@@ -8,6 +8,7 @@ import io.teknek.hiveunit.common.Response;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -46,7 +47,7 @@ public class HiveTest {
     Map<String, File> inputFiles = Maps.newHashMap();
     for (String inputKey : input.keySet()) {
       try {
-        File file = File.createTempFile(UUID.randomUUID().toString(), ".tmp");
+        File file = Files.createTempFile(UUID.randomUUID().toString(), ".tmp").toFile();
         PrintWriter writer = new PrintWriter(file, "UTF-8");
         for (String line : input.get(inputKey)) {
           writer.println(line);
